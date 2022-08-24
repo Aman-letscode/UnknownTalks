@@ -1,0 +1,46 @@
+2 sections:
+Blog - to manage blog related urls and views
+Home - for Front or landing page stuff with contact details
+
+Base: (base.html)
+1. Navbar:
+    (Home/views.py, Blog/view.py)
+    1. Logo
+    2. Home, About, Blog and Contact anchor tag
+    3. Search Bar
+
+    4.Conditions:
+        1.If authenticate or signup: Profile Dropdown with logout button
+        2.Else : Login, SignUp button
+
+* If login or signup is clicked, form is displayed (models) for the respective purpose.
+2. Message Display (if any)
+3. Demo Home Page with Blog button
+4. Featured blog templates
+>Can be extend by other section of website
+
+Login:
+(Home/view.py)
+1. Using Models, template appear on the screen for putting info
+2. This form sends as post request and  authentication starts in backend.
+
+Home Sections:
+1. Home
+2. About
+3. contact
+
+Blog Sections:
+1. Blog Home
+2. Blog Post
+
+Database:
+1. Django Admin 
+    Tables: 
+    1. Home- contact
+    2. Blog - blog, comment
+    3. User
+
+
+-> 12 Aug 
+    1. login and logout
+    2. Comment Django side

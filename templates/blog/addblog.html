@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us{% endblock title %}
+{% block contactactive %}active{% endblock contactactive %}
+{% block body %}
+<div class="container">
+<h1>Add your blog</h1>
+<form action="/addblog" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="name" name="title" class="form-control" id="title" aria-describedby="title">
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">Content:</label>
+      <textarea name="content" class="form-control" id="content" cols="40" rows="5" placeholder="Place your Writing here"></textarea>
+    </div>  
+    <br>
+    <!-- <p>OR</p>
+    <div class="input-group">
+      <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+      <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+    </div> -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+  {% endblock body %}

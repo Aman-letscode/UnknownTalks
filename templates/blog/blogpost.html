@@ -1,4 +1,44 @@
 {% extends 'base.html' %}
 
-{% block title %}BlogPost - {% endblock title %}
-{% block body %}{% endblock body %}
+{% block title %}BlogPost - {{post.title}}{% endblock title %}
+{% block blogpostactive %}active{% endblock blogpostactive %}
+{% block body %}
+{% load humanize %}
+<div class="container my-3">
+    <div class="blog-post">
+            <h2 class="blog-post-title">{{post.title}}</h2>
+            <p class="blog-post-meta">{{post.timeStamp}} by <a href="/about">{{post.author}}</a></p>
+    
+            <p>{{post.content}}</p>
+            <hr>
+          </div>
+          </div>
+          <div class="container">
+            <h2 class="comment">Comments</h2>
+           {% if user.is_authenticated %}
+            <form action="/blog/blogcomments" method="post">
+              {% csrf_token %}
+              <div class="form group">
+                <label for="exampleEmail">Post Comment</label>
+                <input type="text" class="form-control my-2" name="comment" placeholder="Enter comments here"/>
+              </div>
+              <input type="hidden" name="postsno" value="{{post.sno}}">
+              <button class="btn btn-primary" type="submit">Submit</button> 
+              {% comment %} <button type="submit" class="btn btn-primary">Comment</button> {% endcomment %}
+            </form>
+            {% else %}
+            Please log in to comment
+            {% endif %}
+            {% for comment in comments %}
+            
+            
+            <div class="row mb-2">
+            
+            
+              <div class="col-md-2">Image Here</div>
+              <div class="col-md-2"><b> {{comment.user.username}} </b> <span class="badge badge-secondary ">{{comment.timestamp | naturaltime}}</span><div>{{comment.comment}}</div></div>
+            </div>
+            {% endfor %}
+          </div>
+
+{% endblock body %}

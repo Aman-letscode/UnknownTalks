@@ -1,0 +1,44 @@
+{% extends 'base.html' %} 
+{% block title %}Search Results:{% endblock title %} 
+
+<!--brightening this section at navbar if it is on page-->
+{% block blogactive %}active{% endblock blogactive %} 
+
+
+{% block body %}
+
+<!-- Search Result page -->
+<div class="container my-3">
+    <h2>Search Results:</h2>
+    <!-- Checking if there is 0 result so can print the below one-->
+    {% if allPost|length < 1 %}
+    <p>No search results</p>
+    Your search query : <b>{{query}}</b> did not match any documents. <br>
+    Suggestions:
+    <ul>
+    <li>Make sure that all words are spelled correctly.</li>
+    <li>Try more general keywords.</li>
+   <li> Try fewer keywords.</li>
+   <li> Try different keywords.</li>
+    </li>
+    </ul>
+    {% endif %}
+    <!--Displaying all the post from the object of allPost-->
+    {% for post in allPost %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">By {{post.author}}</strong>
+            <h3 class="mb-0">{{post.title}}</h3>
+            <div class="mb-1 text-muted">{{post.timestamp}}</div>
+            <p class="card-text mb-auto">{{post.content | truncatechars:300}}</p>
+            <div class="my-2">
+            	<a href="/blog/{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+            </div>
+            
+        </div>
+        
+    </div>
+    {% endfor %}
+    
+    </div>
+{% endblock body %}
