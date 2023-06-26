@@ -14,7 +14,7 @@
           </div>
           </div>
           <div class="container">
-            <h2 class="comment">Comments</h2>
+            <h2 class="comment">Comments {{comment.count}}</h2>
            {% if user.is_authenticated %}
             <form action="/blog/blogcomments" method="post">
               {% csrf_token %}
@@ -30,13 +30,19 @@
             Please log in to comment
             {% endif %}
             {% for comment in comments %}
-            
-            
             <div class="row mb-2">
-            
-            
-              <div class="col-md-2">Image Here</div>
-              <div class="col-md-2"><b> {{comment.user.username}} </b> <span class="badge badge-secondary ">{{comment.timestamp | naturaltime}}</span><div>{{comment.comment}}</div></div>
+              <div class="col-md-2">
+                <img class="rounded mx-auto d-block w-100 border border-dark p-2" src="./templates/blog/person_icon" alt=" Image Here">
+              </div>
+              <div class="col-md-3">
+                <b> {{comment.user.username}} </b>
+                <span>
+                  {{comment.timestamp | naturaltime}}
+                </span>
+                <div>
+                  {{comment.comment}}
+                </div>
+              </div>
             </div>
             {% endfor %}
           </div>
